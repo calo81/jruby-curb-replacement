@@ -13,7 +13,6 @@ if RUBY_PLATFORM == 'java'
         @url=url
         @payload=payload
         @headers = headers
-        hydra_url = $hydra_url.split(":")
         @http_client = HTTP::Client.new(:host => "#{hydra_url[0]+hydra_url[1]}", :port => "#{hydra_url[2]}")
       end
 
@@ -37,7 +36,6 @@ if RUBY_PLATFORM == 'java'
         response = @http_client.execute(request)
         @response_code=response.status_code
         @body_str=response.body
-        @body_str.encode!("ISO-8859-1")
       end
 
       def http_put(payload=nil)
