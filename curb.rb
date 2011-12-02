@@ -13,7 +13,8 @@ if RUBY_PLATFORM == 'java'
         @url=url
         @payload=payload
         @headers = headers
-        @http_client = HTTP::Client.new(:host => "#{hydra_url[0]+hydra_url[1]}", :port => "#{hydra_url[2]}")
+        uri = URI::parse(url)
+        @http_client = HTTP::Client.new(:host => uri.host, :port => uri.port)
       end
 
       def perform
